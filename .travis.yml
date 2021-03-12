@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true wakeful_sun/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "Test"
+  env: "Test-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-847231355072"
+  bucket_path: "Test"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
